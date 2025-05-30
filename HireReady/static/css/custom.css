@@ -1,0 +1,77 @@
+/* File Upload Styling */
+.file-upload-box {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 200px;
+}
+
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+}
+
+.file-upload-box.highlight {
+    border-color: var(--bs-primary) !important;
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.file-upload-box.file-selected {
+    border-color: var(--bs-success) !important;
+    background-color: rgba(var(--bs-success-rgb), 0.1);
+}
+
+/* Step Numbers */
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--bs-primary);
+    color: white;
+    font-weight: bold;
+}
+
+/* Example Cards */
+.example-card {
+    border-radius: 8px;
+}
+
+.example-card.weak {
+    background-color: rgba(var(--bs-danger-rgb), 0.1);
+    border-left: 4px solid var(--bs-danger);
+}
+
+.example-card.strong {
+    background-color: rgba(var(--bs-success-rgb), 0.1);
+    border-left: 4px solid var(--bs-success);
+}
+
+/* Resume Content */
+.resume-content {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.resume-content pre {
+    white-space: pre-wrap;
+    font-family: var(--bs-font-sans-serif);
+    margin-bottom: 0;
+}
+
+/* Responsive Images */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Tabs styling */
+.nav-tabs .nav-link {
+    color: var(--bs-body-color);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--bs-primary);
+    font-weight: bold;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Improvement Results</title>
+    <!-- Bootstrap CSS (Replit dark theme) -->
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <!-- Header Section -->
+                <div class="mb-4">
+                    <h1 class="fw-bold">Resume Improvement Results</h1>
+                    <p class="lead">Here's how we improved your resume with stronger, more impactful phrases</p>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary mb-4">
+                        <i class="fas fa-arrow-left me-2"></i>Upload Another Resume
+                    </a>
+                </div>
+
+                <!-- Results Summary Card -->
+                <div class="card shadow mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-3">Improvement Summary</h3>
+                        <p>We found <span class="badge bg-info">{{ improvements|length }}</span> opportunities to improve your resume.</p>
+                        
+                        <div class="d-grid gap-2">
+                            <form action="{{ url_for('download_improved') }}" method="post">
+                                <input type="hidden" name="improved_text" value="{{ improved_text }}">
+                                <input type="hidden" name="original_filename" value="{{ original_filename }}">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-download me-2"></i>Download Improved Resume
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Improvements List -->
+                {% if improvements %}
+                <div class="card shadow mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-3">Improvement Details</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Original Phrase</th>
+                                        <th scope="col">Improved Phrase</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for improvement in improvements %}
+                                    <tr>
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td class="text-danger">{{ improvement.original }}</td>
+                                        <td class="text-success">{{ improvement.suggestion }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Side-by-Side Comparison -->
+                <div class="card shadow mb-5">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="comparison-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="side-by-side-tab" data-bs-toggle="tab" data-bs-target="#side-by-side" type="button" role="tab" aria-controls="side-by-side" aria-selected="true">Side by Side</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="original-tab" data-bs-toggle="tab" data-bs-target="#original" type="button" role="tab" aria-controls="original" aria-selected="false">Original</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="improved-tab" data-bs-toggle="tab" data-bs-target="#improved" type="button" role="tab" aria-controls="improved" aria-selected="false">Improved</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="tab-content" id="comparison-content">
+                            <!-- Side by Side View -->
+                            <div class="tab-pane fade show active" id="side-by-side" role="tabpanel" aria-labelledby="side-by-side-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="p-3 bg-body-tertiary rounded">
+                                            <h5 class="mb-3 text-danger">
+                                                <i class="fas fa-file-alt me-2"></i>Original Resume
+                                            </h5>
+                                            <div class="resume-content">
+                                                <pre>{{ original_text }}</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 bg-body-tertiary rounded">
+                                            <h5 class="mb-3 text-success">
+                                                <i class="fas fa-file-alt me-2"></i>Improved Resume
+                                            </h5>
+                                            <div class="resume-content">
+                                                <pre>{{ improved_text }}</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Original Only View -->
+                            <div class="tab-pane fade" id="original" role="tabpanel" aria-labelledby="original-tab">
+                                <div class="p-3 bg-body-tertiary rounded">
+                                    <h5 class="mb-3 text-danger">
+                                        <i class="fas fa-file-alt me-2"></i>Original Resume
+                                    </h5>
+                                    <div class="resume-content">
+                                        <pre>{{ original_text }}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Improved Only View -->
+                            <div class="tab-pane fade" id="improved" role="tabpanel" aria-labelledby="improved-tab">
+                                <div class="p-3 bg-body-tertiary rounded">
+                                    <h5 class="mb-3 text-success">
+                                        <i class="fas fa-file-alt me-2"></i>Improved Resume
+                                    </h5>
+                                    <div class="resume-content">
+                                        <pre>{{ improved_text }}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Resources -->
+                <div class="row mb-5">
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow h-100">
+                            <img src="https://pixabay.com/get/g2269e480ecb92ca01e59c59ea1885b40080508f10afc79b7e989ffd7b7a0cd7d4c309376907eb0306dbcf328501fd3c3db6027e3db023bfa8d95f3d878915147_1280.jpg" class="card-img-top" alt="Professional resume">
+                            <div class="card-body">
+                                <h5 class="card-title">Resume Writing Tips</h5>
+                                <p class="card-text">Beyond word choice, structure your resume for maximum impact.</p>
+                                <a href="#" class="btn btn-outline-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow h-100">
+                            <img src="https://pixabay.com/get/g5fada703df12711252beb37fcfefcae7398deef78abac5812475a8f3433db2408a7d54628b5a51e48d302d0a11e269deeae41ebaff4c43e49b90a18ab140e334_1280.jpg" alt="Job interview" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Interview Preparation</h5>
+                                <p class="card-text">Prepare for interviews with confidence after perfecting your resume.</p>
+                                <a href="#" class="btn btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
