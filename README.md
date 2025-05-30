@@ -1,8 +1,8 @@
 ## HireReady 🧠📄
 
 **HireReady** is a Flask-based resume enhancement tool that identifies weak or overused phrases in resumes and replaces them with stronger, more impactful alternatives.
-It uses Design and Analysis of Algorithms (DAA) like Rabin-Karp, KMP, and Boyer-Moore for efficient text matching, ensuring optimized performance and high accuracy.
-The tool supports `.pdf`, `.docx`, and `.txt` files and preserves original formatting while delivering improved content.
+It uses Algorithms  Rabin-Karp  for efficient text matching, ensuring optimized performance and high accuracy.
+
 
 ## 📁 Project Structure
 
@@ -15,7 +15,7 @@ The tool supports `.pdf`, `.docx`, and `.txt` files and preserves original forma
 
 ## 🚀 Features
 
-- Upload `.pdf`, `.docx`, or `.txt` resume files  
+- Upload resume files  
 - Detect and replace weak/overused phrases  
 - Uses Rabin-Karp, KMP, and Boyer-Moore algorithms  
 - Retains original layout and structure  
