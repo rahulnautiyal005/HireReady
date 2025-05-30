@@ -35,5 +35,4 @@ $#:- Screenshot  -:#&
 ![Screenshot 2025-05-30 114926](https://github.com/user-attachments/assets/75e001e6-8df8-4bcd-a8a6-926c7bff1882)
 ![Screenshot 2025-05-30 114805](https://github.com/user-attachments/assets/13f220e4-e59b-4d18-a0b1-2a096aca166e)
 ![Screenshot 2025-05-30 114747](https://github.com/user-attachments/assets/ce063f39-98c9-45d2-9aad-2e14c77ee4cd)
-![Screenshot 2025-05-30 114558](https://github.com/user-attachments/assets/e81f1b87-1bc8-4add-908d-02efb35326a0)
 ![Screenshot 2025-05-30 114911](https://github.com/user-attachments/assets/8b97c9a8-60b3-4d89-b47f-80f4c6d5e156)
